@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			font-size: 50px;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+<script>
+	//现在距离未来某时刻的倒计时
+	// document.body.innerHTML=clock;
+ 
+	setInterval(function clock(){
+	//JS语言中获取月份总是比当前月份小1,所以11月设置为10月,设置将来时间
+	var date1 = new Date(2019,1,1,0,0,0);
+	console.log(date1);
+	//获得11月11日距离1970年1月1日0时0分0秒的总毫秒数,getTime为固定的方法,就是获取当前时间到1970年1月1日0时0分0秒的总毫秒数
+	var time1 =date1.getTime();
+	console.log(time1);
+	//创建此时的时间对象
+	var date = new Date();
+	//获得此时距离1970年1月1日0时0分0秒的总毫秒数
+	var time2 = date.getTime();
+	console.log(time2);
+ 
+	//获得两个时间差
+	var time=time1-time2;
+	console.log(time);
+	//获得时间差的最大天数
+	var day =parseInt(time/(24*60*60*1000));
+	console.log(day);
+	//获得时间差的最大小时
+	var hours =parseInt(time%(24*60*60*1000)/(60*60*1000));
+	console.log(hours);
+	//获得时间差的最大分钟数
+	var minutes= parseInt(time%(24*60*60*1000)%(60*60*1000)/(60*1000));
+	console.log(minutes);
+	//获得时间差的最大秒数
+	var seconds=parseInt(time%(24*60*60*1000)%(60*60*1000)%(60*1000)/1000);
+	console.log(seconds);
+	//当下面这些获得的是一位数的时候,给前面拼接0
+	if(day.toString().length==1){
+			day="0"+(day);
+			console.log(day);
+		}
+		if(hours.toString().length==1){
+			hours="0"+(hours);
+			console.log(hours);
+		}
+		if(minutes.toString().length==1){
+			minutes="0"+(minutes);
+			console.log(minutes);
+		}
+		if(seconds.toString().length==1){
+			seconds="0"+(seconds);
+			console.log(seconds);
+		}
+	var time ="距离" + day +"天"+hours+"时"+minutes+"分"+seconds+"秒";
+	//将结果写在body中,InnerHTML每次会覆盖之间的内容,所以会在原来的位置不断变化,用docuemnt.write不行,因为不会再同一位置覆盖
+	document.body.innerHTML=time;
+	//计时器每1000毫秒就是1秒运行一次
+	},1000);
+ 
+ 
+</script>
+</html>
